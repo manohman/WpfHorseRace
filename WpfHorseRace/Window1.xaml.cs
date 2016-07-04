@@ -56,6 +56,21 @@ namespace WpfHorseRace
             Ports = new List<string>(SerialPort.GetPortNames());
             comboBox1.ItemsSource = Ports;
 
+
+            this.MouseDoubleClick += Window1_MouseDoubleClick;
+
+        }
+
+        private void Window1_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            
+            if(WindowState == WindowState.Maximized) {
+                WindowState = WindowState.Normal;
+                WindowStyle = WindowStyle.SingleBorderWindow;
+            } else if(WindowState == WindowState.Normal) {
+                WindowState = WindowState.Maximized;
+                WindowStyle = WindowStyle.None;
+            }
+
         }
 
         private void OnLoaded() {
@@ -112,31 +127,33 @@ namespace WpfHorseRace
                 raceHorse.StartNewRace();
             }
 
-            string port = comboBox1.SelectedValue.ToString();
+            var selectedValue = comboBox1.SelectedValue;
 
-            _raceController.StartNewRace(port);
+            if (selectedValue != null) {
+                string port = selectedValue.ToString();
 
-
-            Uri uri = new Uri(@"Resources\AndTheyreoff.mp3", UriKind.Relative);
-
-
-            _player.MediaFailed += (o, args) =>
-            {
-                int index = 0;
-                index++;
-                //here you can get hint of what causes the failure 
-                //from method parameter args 
-            };
+                _raceController.StartNewRace(port);
 
 
-            _player2.Open(uri);
-            _player2.Play();
-
-            PlayRandomFile();
+                Uri uri = new Uri(@"Resources\AndTheyreoff.mp3", UriKind.Relative);
 
 
+                _player.MediaFailed += (o, args) => {
+                    int index = 0;
+                    index++;
+                    //here you can get hint of what causes the failure 
+                    //from method parameter args 
+                };
 
 
+                _player2.Open(uri);
+                _player2.Play();
+
+                PlayRandomFile();
+
+
+
+            }
 
         }
 
@@ -144,9 +161,9 @@ namespace WpfHorseRace
 		{
 			List<RaceHorse> raceHorses = new List<RaceHorse>();
 
-			raceHorses.Add( new RaceHorse( "Star 1", "Star.png" ) );
-			raceHorses.Add( new RaceHorse( "Star 2", "RedStar.gif" ) );
-			raceHorses.Add( new RaceHorse( "Star 3", "BlueStar.gif" ) );
+			raceHorses.Add( new RaceHorse( "Star 1", "r1.png" ) );
+			raceHorses.Add( new RaceHorse( "Star 2", "r2.png" ) );
+			raceHorses.Add( new RaceHorse( "Star 3", "r3.png" ) );
 			//raceHorses.Add( new RaceHorse( "Fresh Spice" ) );
 			//raceHorses.Add( new RaceHorse( "Bluegrass" ) );
 			//raceHorses.Add( new RaceHorse( "Kit Madison" ) );

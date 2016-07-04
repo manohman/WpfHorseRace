@@ -137,6 +137,9 @@
     <Resource Include="Resources\mushroom.jpg" />
     <Resource Include="Resources\Star.png" />
     <Resource Include="Resources\Triple_Banana.jpg" />
+    <Resource Include="Resources\r1.png" />
+    <Resource Include="Resources\r2.png" />
+    <Resource Include="Resources\r3.png" />
     <Content Include="Resources\TwinkleTwinkleLittleStar.mp3" />
     <Resource Include="Resources\YellowStar.gif" />
   </ItemGroup>
