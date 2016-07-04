@@ -137,7 +137,7 @@
     <Resource Include="Resources\mushroom.jpg" />
     <Resource Include="Resources\Star.png" />
     <Resource Include="Resources\Triple_Banana.jpg" />
-    <Content Include="Resources\TwinkleTwinkleLittleStar.mp3" />
+    <Content Include="Resources\Sounds\TwinkleTwinkleLittleStar.mp3" />
     <Resource Include="Resources\YellowStar.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

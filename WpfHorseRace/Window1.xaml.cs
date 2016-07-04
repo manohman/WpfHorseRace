@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.IO.Ports;
 using System.Text;
 using System.Windows;
@@ -32,11 +33,20 @@ namespace WpfHorseRace
             _random = new Random();
             _songFileNames = new List<string>();
 
-            _songFileNames.Add("Resources\\TwinkleTwinkleLittleStar.mp3");
-            _songFileNames.Add("Resources\\002.mp3");
-            _songFileNames.Add("Resources\\003.mp3");
-            _songFileNames.Add("Resources\\004.mp3");
+            //_songFileNames.Add("Resources\\Sounds\\TwinkleTwinkleLittleStar.mp3");
+            //_songFileNames.Add("Resources\\Sounds\\002.mp3");
+            //_songFileNames.Add("Resources\\Sounds\\003.mp3");
+            //_songFileNames.Add("Resources\\Sounds\\004.mp3");
 
+
+            DirectoryInfo di = new DirectoryInfo("Resources\\Sounds");
+
+
+            foreach(var fileInfo in di.GetFiles()) {
+                _songFileNames.Add(fileInfo.Name);
+            }
+
+            
 
             _player = new MediaPlayer();
             _player2 = new MediaPlayer();
@@ -117,7 +127,7 @@ namespace WpfHorseRace
             _raceController.StartNewRace(port);
 
 
-            Uri uri = new Uri(@"Resources\AndTheyreoff.mp3", UriKind.Relative);
+            Uri uri = new Uri(@"Resources\Sounds\AndTheyreoff.mp3", UriKind.Relative);
 
 
             _player.MediaFailed += (o, args) =>

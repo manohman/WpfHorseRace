@@ -4,14 +4,14 @@
 winexe
 C#
 .cs
-E:\Projects\WpfHorseRace\WpfHorseRace\obj\Debug\
+F:\Projects\WpfHorseRace\WpfHorseRace\obj\Debug\
 WpfHorseRace
 none
 false
 DEBUG;TRACE
-E:\Projects\WpfHorseRace\WpfHorseRace\App.xaml
+F:\Projects\WpfHorseRace\WpfHorseRace\App.xaml
 32086478308
-1-153881819
+24-1406170316
 121272308634
 14-215853292
 Resources\RacePitBorderStyle.xaml;Resources\RaceHorseDataTemplate.xaml;Window1.xaml;
