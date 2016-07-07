@@ -54,7 +54,7 @@
 
                     <!-- Displays the picture of a race horse. <Image Source="RaceHorse.gif" Height="120" Width="160"/>-->
 
-           <Image Source="{Binding DisplayedImagePath}" Height="120" Width="160"/>
+           <Image Source="{Binding DisplayedImagePath}" Height="200" Width="180"/>
         </StackPanel>
 
         <TextBlock x:Name="horseName" Text="{Binding Name}"  Margin="6,0" VerticalAlignment="Center" Foreground="White" />

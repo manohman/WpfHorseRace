@@ -36,17 +36,9 @@ namespace WpfHorseRace {
                     if (MoveRequested != null) {
                         MoveRequested(index);
                     }
-
-
                 }
             }
-
-
         }
-
-
-
-
 
         public static int CharToInt1(char input) {
             int result = -1;

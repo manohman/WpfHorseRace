@@ -9,23 +9,24 @@ namespace WpfHorseRace
 	/// </summary>
 	public class RaceHorse : INotifyPropertyChanged
 	{
-		#region Data
-
-		// Static fields
-		//readonly static Random random;
-		static RaceHorse raceWinner = null;
+        #region Data
+        delegate void SetIndicatorCallback();
+        // Static fields
+        //readonly static Random random;
+        static RaceHorse raceWinner = null;
 
 		// Instance fields
 		readonly DispatcherTimer timer = new DispatcherTimer();
 		readonly string name;
 		int percentComplete;
         string _imageSource;
+        string _moveSound;
 
-		#endregion // Data
+        #endregion // Data
 
-		#region Constructors
+        #region Constructors
 
-		static RaceHorse()
+        static RaceHorse()
 		{
 			//RaceHorse.random = new Random( DateTime.Now.Millisecond );
 		}
@@ -34,22 +35,27 @@ namespace WpfHorseRace
             PercentComplete += spaces;
         }
 
-        public RaceHorse( string name, string imageSource            )
+
+
+
+
+        public RaceHorse( string name, string imageSource , string moveSound)
 		{
+            this._moveSound = moveSound;
             this._imageSource = imageSource;
 			this.name = name;
 			this.percentComplete = 0;
-					
-		//	this.timer.Tick += this.timer_Tick;			
-		}
+
+            //	this.timer.Tick += this.timer_Tick;			
+        }
 
 
 
-		#endregion // Constructors
+        #endregion // Constructors
 
-		#region Public Properties
+        #region Public Properties
 
-		public bool IsFinished
+        public bool IsFinished
 		{
 			get { return this.PercentComplete >= 100; }
 		}

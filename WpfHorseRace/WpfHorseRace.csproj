@@ -45,6 +45,9 @@
     <OutputPath>.\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>r3.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -127,9 +130,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Coin.mp3" />
+    <Content Include="Resources\Jump.mp3" />
+    <Content Include="Resources\Stomp.mp3" />
+    <Content Include="Resources\Winner.mp3" />
     <Resource Include="Resources\r1.png" />
     <Resource Include="Resources\r2.png" />
     <Resource Include="Resources\r3.png" />
+    <Resource Include="r3.ico" />
+    <Resource Include="Resources\r3.ico" />
     <Content Include="Resources\startbell.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

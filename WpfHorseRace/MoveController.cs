@@ -5,6 +5,7 @@ using System.Text;
 namespace WpfHorseRace {
     public class RaceController {
         public event RaceOverEventHandler OnRaceOver;
+        public event MoveEventHandler OnMove;
 
         IMover _mover;
 
@@ -16,13 +17,15 @@ namespace WpfHorseRace {
 
         }
 
-
-
-
-        private void _mover_MoveRequested(int index) {
+         private void _mover_MoveRequested(int index) {
 
             if (index >= 0 && index < Horses.Count) {
                 var raceHorse = Horses[index];
+
+
+                if (OnMove != null) {
+                    OnMove(index);
+                }
                 raceHorse.Move(5);
 
                 if (raceHorse.IsWinner) {
@@ -32,8 +35,6 @@ namespace WpfHorseRace {
                         OnRaceOver();
                     }
                 }
-
-
             }
 
         }
@@ -44,5 +45,6 @@ namespace WpfHorseRace {
     }
 
     public delegate void RaceOverEventHandler();
+    public delegate void MoveEventHandler(int index);
 
 }
