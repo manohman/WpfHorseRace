@@ -127,6 +127,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\r1.png" />
+    <Resource Include="Resources\r2.png" />
+    <Resource Include="Resources\r3.png" />
     <Content Include="Resources\startbell.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

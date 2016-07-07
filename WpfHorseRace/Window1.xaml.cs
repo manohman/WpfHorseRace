@@ -164,9 +164,9 @@ namespace WpfHorseRace
 		{
 			List<RaceHorse> raceHorses = new List<RaceHorse>();
 
-			raceHorses.Add( new RaceHorse( "Star 1", "r1.png" ) );
-			raceHorses.Add( new RaceHorse( "Star 2", "r2.png" ) );
-			raceHorses.Add( new RaceHorse( "Star 3", "r3.png" ) );
+			raceHorses.Add( new RaceHorse( "Star 1", @"r1.png") );
+			raceHorses.Add( new RaceHorse( "Star 2", @"r2.png") );
+			raceHorses.Add( new RaceHorse( "Star 3", @"r3.png") );
 			//raceHorses.Add( new RaceHorse( "Fresh Spice" ) );
 			//raceHorses.Add( new RaceHorse( "Bluegrass" ) );
 			//raceHorses.Add( new RaceHorse( "Kit Madison" ) );
