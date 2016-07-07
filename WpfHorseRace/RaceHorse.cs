@@ -2,34 +2,45 @@ using System;
 using System.ComponentModel;
 using System.Windows.Threading;
 
-namespace WpfHorseRace
-{
-	/// <summary>
-	/// Represents a horse in a race.
-	/// </summary>
-	public class RaceHorse : INotifyPropertyChanged
-	{
+namespace WpfHorseRace {
+    /// <summary>
+    /// Represents a horse in a race.
+    /// </summary>
+    public class RaceHorse : INotifyPropertyChanged {
         #region Data
         delegate void SetIndicatorCallback();
         // Static fields
         //readonly static Random random;
         static RaceHorse raceWinner = null;
 
-		// Instance fields
-		readonly DispatcherTimer timer = new DispatcherTimer();
-		readonly string name;
-		int percentComplete;
+        // Instance fields
+        readonly DispatcherTimer timer = new DispatcherTimer();
+        readonly string name;
+        int percentComplete;
         string _imageSource;
         string _moveSound;
+        IPowerUp _powerUp;
+
+        string _powerUpImageSource;
+        private bool _showPowerUp;
 
         #endregion // Data
 
         #region Constructors
 
-        static RaceHorse()
-		{
-			//RaceHorse.random = new Random( DateTime.Now.Millisecond );
-		}
+        static RaceHorse() {
+            //RaceHorse.random = new Random( DateTime.Now.Millisecond );
+        }
+
+        internal void SetPowerUp(IPowerUp powerUp) {
+            _powerUp = powerUp;
+            _powerUp.SetOwner(this);
+
+            PowerUpDisplayImage = _powerUp.DisplayImage;
+
+            //ShowPowerUp = false;
+
+        }
 
         internal void Move(int spaces) {
             PercentComplete += spaces;
@@ -39,12 +50,11 @@ namespace WpfHorseRace
 
 
 
-        public RaceHorse( string name, string imageSource , string moveSound)
-		{
+        public RaceHorse(string name, string imageSource, string moveSound) {
             this._moveSound = moveSound;
             this._imageSource = imageSource;
-			this.name = name;
-			this.percentComplete = 0;
+            this.name = name;
+            this.percentComplete = 0;
 
             //	this.timer.Tick += this.timer_Tick;			
         }
@@ -55,108 +65,125 @@ namespace WpfHorseRace
 
         #region Public Properties
 
-        public bool IsFinished
-		{
-			get { return this.PercentComplete >= 100; }
-		}
+        public bool IsFinished {
+            get { return this.PercentComplete >= 100; }
+        }
 
-		public bool IsWinner
-		{
-			get { return RaceHorse.raceWinner == this; }
-		}
+        public bool IsWinner {
+            get { return RaceHorse.raceWinner == this; }
+        }
 
-		public string Name
-		{
-			get { return this.name; }
-		}
+        public string Name {
+            get { return this.name; }
+        }
 
 
         public string DisplayedImagePath {
             get { return _imageSource; }
         }
 
+        public int PowerUpPercentComplete {
+            get {
+                return 20;
+            }
+        }
 
-        public int PercentComplete
-		{
-			get { return this.percentComplete; }
-			private set
-			{
-				if( this.percentComplete == value )
-					return;
 
-				if( value < 0 || value > 100 )
-					throw new ArgumentOutOfRangeException( "PercentComplete" );
+        public int PercentComplete {
+            get { return this.percentComplete; }
+            private set {
+                if (this.percentComplete == value)
+                    return;
 
-				bool wasFinished = this.IsFinished;
+                if (value < 0 || value > 100)
+                    throw new ArgumentOutOfRangeException("PercentComplete");
 
-				this.percentComplete = value;
+                bool wasFinished = this.IsFinished;
 
-				this.RaisePropertyChanged( "PercentComplete" );
+                this.percentComplete = value;
 
-				if( wasFinished != this.IsFinished )
-				{		
-					if( this.IsFinished && RaceHorse.raceWinner == null )
-					{
-						RaceHorse.raceWinner = this;
-						this.RaisePropertyChanged( "IsWinner" );
-					}
+                this.RaisePropertyChanged("PercentComplete");
 
-					this.RaisePropertyChanged( "IsFinished" );	
-				}
+                if (wasFinished != this.IsFinished) {
+                    if (this.IsFinished && RaceHorse.raceWinner == null) {
+                        RaceHorse.raceWinner = this;
+                        this.RaisePropertyChanged("IsWinner");
+                    }
 
-				// In case this horse was the previous winner and a new race has begun,
-				// notify the world that the IsWinner property has changed on this horse.
-				if( wasFinished && value == 0 )
-					this.RaisePropertyChanged( "IsWinner" );
-			}
-		}
+                    this.RaisePropertyChanged("IsFinished");
+                }
 
-		#endregion // Public Properties
+                // In case this horse was the previous winner and a new race has begun,
+                // notify the world that the IsWinner property has changed on this horse.
+                if (wasFinished && value == 0)
+                    this.RaisePropertyChanged("IsWinner");
+            }
+        }
 
-		#region Public Methods
+        public string PowerUpDisplayImage {
+            get { return _powerUpImageSource; }
+            private set {
+                _powerUpImageSource = value;
 
-		public void StartNewRace()
-		{
-			// When a race begins, remove a reference to the previous winner.
-			if( RaceHorse.raceWinner != null )
-				RaceHorse.raceWinner = null;
+                this.RaisePropertyChanged("PowerUpDisplayImage");
 
-			// Put the horse back at the start of the track.
-			this.PercentComplete = 0;
+            }
 
-			// Give the horse a random "speed" to run at.
-	//		this.timer.Interval = TimeSpan.FromMilliseconds( RaceHorse.random.Next( 20, 100 ) );
 
-			// Start the DispatcherTimer, which ticks when the horse should "move."
-//			if( ! this.timer.IsEnabled )
-	//			this.timer.Start();
-		}
+        }
 
-		#endregion // Public Methods		
+        public bool ShowPowerUp {
+            get { return _showPowerUp; }
+            set {
+                _showPowerUp = value;
+                this.RaisePropertyChanged("ShowPowerUp");
 
-		#region timer_Tick
 
-		void timer_Tick( object sender, EventArgs e )
-		{
-			if( !this.IsFinished )
-				++this.PercentComplete;
+            }
+        }
+        #endregion // Public Properties
 
-			if( this.IsFinished )
-				this.timer.Stop();
-		}
+        #region Public Methods
 
-		#endregion // timer_Tick
+        public void StartNewRace() {
+            // When a race begins, remove a reference to the previous winner.
+            if (RaceHorse.raceWinner != null)
+                RaceHorse.raceWinner = null;
 
-		#region INotifyPropertyChanged Members
+            // Put the horse back at the start of the track.
+            this.PercentComplete = 0;
 
-		public event PropertyChangedEventHandler PropertyChanged;
+            // Give the horse a random "speed" to run at.
+            //		this.timer.Interval = TimeSpan.FromMilliseconds( RaceHorse.random.Next( 20, 100 ) );
 
-		private void RaisePropertyChanged( string propertyName )
-		{
-			if( this.PropertyChanged != null )
-				this.PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
-		}
+            // Start the DispatcherTimer, which ticks when the horse should "move."
+            //			if( ! this.timer.IsEnabled )
+            //			this.timer.Start();
+        }
 
-		#endregion		
-	}
+        #endregion // Public Methods		
+
+        #region timer_Tick
+
+        void timer_Tick(object sender, EventArgs e) {
+            if (!this.IsFinished)
+                ++this.PercentComplete;
+
+            if (this.IsFinished)
+                this.timer.Stop();
+        }
+
+        #endregion // timer_Tick
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string propertyName) {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+    }
 }

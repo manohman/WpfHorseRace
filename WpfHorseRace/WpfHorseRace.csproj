@@ -86,6 +86,8 @@
     </Compile>
     <Compile Include="MoveController.cs" />
     <Compile Include="Mover.cs" />
+    <Compile Include="PowerUpController.cs" />
+    <Compile Include="PowerUps.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

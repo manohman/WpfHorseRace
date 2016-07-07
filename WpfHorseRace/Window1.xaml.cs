@@ -19,6 +19,8 @@ namespace WpfHorseRace {
         delegate void SetMoveCallback(int index);
 
         RaceController _raceController;
+        PowerUpController _powerUpController;
+
         MediaPlayer _gameMusicPlayer;
         MediaPlayer _startEndPlayer;
 
@@ -57,6 +59,10 @@ namespace WpfHorseRace {
             _raceController.Horses = horses;
             _raceController.OnRaceOver += _raceController_OnRaceOver;
             _raceController.OnMove += _raceController_OnMove;
+
+            _powerUpController = new PowerUpController(horses);
+
+
             this.Loaded += delegate { OnLoaded(); };
             this.lnkStartNewRace.Click += delegate { this.StartRace(); };
 
@@ -185,6 +191,8 @@ namespace WpfHorseRace {
                 string port = selectedValue.ToString();
 
                 _raceController.StartNewRace(port);
+                _powerUpController.StartNewRace();
+
 
                 Uri uri = new Uri(@"Resources\startbell.mp3", UriKind.Relative);
 
