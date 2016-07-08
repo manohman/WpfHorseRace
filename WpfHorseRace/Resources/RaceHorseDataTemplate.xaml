@@ -79,7 +79,7 @@
                     <Image Source="{Binding DisplayedImagePath}" Height="200" Width="180"/>
                 </StackPanel>
 
-                <TextBlock x:Name="horseName" Text="{Binding Name}"  Margin="6,0" VerticalAlignment="Center" Foreground="White" />
+                <TextBlock x:Name="horseName" Text="{Binding PercentComplete}"  Margin="6,0" VerticalAlignment="Center" Foreground="White" />
             </Grid>
 
             <!-- Make the race pit display a tooltip which shows how much of the race the horse has completed. -->

@@ -7,7 +7,9 @@ namespace WpfHorseRace {
     /// Represents a horse in a race.
     /// </summary>
     public class RaceHorse : INotifyPropertyChanged {
-        #region Data
+        #region Data 
+        public delegate void ObtainedPowerUpEventHandler();
+
         delegate void SetIndicatorCallback();
         // Static fields
         //readonly static Random random;
@@ -23,12 +25,17 @@ namespace WpfHorseRace {
 
         string _powerUpImageSource;
         private bool _showPowerUp;
+        private int _powerUpPercentComplete;
+        private int _moveMultiplier;
+
+        public event ObtainedPowerUpEventHandler OnObtainedPowerUp;
 
         #endregion // Data
 
         #region Constructors
 
         static RaceHorse() {
+         
             //RaceHorse.random = new Random( DateTime.Now.Millisecond );
         }
 
@@ -43,7 +50,7 @@ namespace WpfHorseRace {
         }
 
         internal void Move(int spaces) {
-            PercentComplete += spaces;
+            PercentComplete += (spaces * _moveMultiplier);
         }
 
 
@@ -55,7 +62,7 @@ namespace WpfHorseRace {
             this._imageSource = imageSource;
             this.name = name;
             this.percentComplete = 0;
-
+            _moveMultiplier = 1;
             //	this.timer.Tick += this.timer_Tick;			
         }
 
@@ -84,7 +91,12 @@ namespace WpfHorseRace {
 
         public int PowerUpPercentComplete {
             get {
-                return 20;
+                return _powerUpPercentComplete;
+            }
+            set {
+                _powerUpPercentComplete = value;
+                this.RaisePropertyChanged("PowerUpPercentComplete");
+
             }
         }
 
@@ -117,6 +129,12 @@ namespace WpfHorseRace {
                 // notify the world that the IsWinner property has changed on this horse.
                 if (wasFinished && value == 0)
                     this.RaisePropertyChanged("IsWinner");
+
+                if(percentComplete == _powerUpPercentComplete) {
+                    if(OnObtainedPowerUp != null) {
+                        OnObtainedPowerUp();
+                    }
+                }
             }
         }
 
@@ -132,6 +150,10 @@ namespace WpfHorseRace {
 
         }
 
+        internal void SetMoveMultiplier(int moveMultiplier) {
+            _moveMultiplier = moveMultiplier;
+        }
+
         public bool ShowPowerUp {
             get { return _showPowerUp; }
             set {
@@ -141,6 +163,8 @@ namespace WpfHorseRace {
 
             }
         }
+
+
         #endregion // Public Properties
 
         #region Public Methods
@@ -152,7 +176,7 @@ namespace WpfHorseRace {
 
             // Put the horse back at the start of the track.
             this.PercentComplete = 0;
-
+            _moveMultiplier = 1;
             // Give the horse a random "speed" to run at.
             //		this.timer.Interval = TimeSpan.FromMilliseconds( RaceHorse.random.Next( 20, 100 ) );
 
