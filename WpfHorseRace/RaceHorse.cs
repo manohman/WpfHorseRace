@@ -20,7 +20,7 @@ namespace WpfHorseRace {
         readonly string name;
         int percentComplete;
         string _imageSource;
-        string _moveSound;
+
         IPowerUp _powerUp;
 
         string _powerUpImageSource;
@@ -49,16 +49,18 @@ namespace WpfHorseRace {
 
         }
 
-        internal void Move(int spaces) {
-            PercentComplete += (spaces * _moveMultiplier);
+        internal bool Move(int spaces) {
+            int spacesToMove = (spaces * _moveMultiplier);
+            PercentComplete += spacesToMove;
+            return spacesToMove > 0;
         }
 
 
 
 
 
-        public RaceHorse(string name, string imageSource, string moveSound) {
-            this._moveSound = moveSound;
+        public RaceHorse(string name, string imageSource) {
+
             this._imageSource = imageSource;
             this.name = name;
             this.percentComplete = 0;
@@ -130,7 +132,7 @@ namespace WpfHorseRace {
                 if (wasFinished && value == 0)
                     this.RaisePropertyChanged("IsWinner");
 
-                if(percentComplete == _powerUpPercentComplete) {
+                if(percentComplete == _powerUpPercentComplete && _showPowerUp) {
                     if(OnObtainedPowerUp != null) {
                         OnObtainedPowerUp();
                     }
@@ -144,10 +146,7 @@ namespace WpfHorseRace {
                 _powerUpImageSource = value;
 
                 this.RaisePropertyChanged("PowerUpDisplayImage");
-
             }
-
-
         }
 
         internal void SetMoveMultiplier(int moveMultiplier) {
@@ -159,8 +158,6 @@ namespace WpfHorseRace {
             set {
                 _showPowerUp = value;
                 this.RaisePropertyChanged("ShowPowerUp");
-
-
             }
         }
 

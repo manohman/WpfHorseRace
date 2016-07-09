@@ -134,6 +134,7 @@
   <ItemGroup>
     <Content Include="Resources\Coin.mp3" />
     <Content Include="Resources\Jump.mp3" />
+    <Content Include="Resources\powerup.mp3" />
     <Content Include="Resources\Stomp.mp3" />
     <Content Include="Resources\Winner.mp3" />
     <Resource Include="Resources\r1.png" />

@@ -23,6 +23,7 @@ namespace WpfHorseRace {
 
         MediaPlayer _gameMusicPlayer;
         MediaPlayer _startEndPlayer;
+        MediaPlayer _powerUpPlayer;
 
         List<string> _songFileNames;
         Random _random;
@@ -37,23 +38,26 @@ namespace WpfHorseRace {
 
             DirectoryInfo di = new DirectoryInfo("Resources\\Sounds");
 
-
             foreach (var fileInfo in di.GetFiles()) {
                 _songFileNames.Add(fileInfo.FullName);
             }
 
-
-
             _gameMusicPlayer = new MediaPlayer();
             _startEndPlayer = new MediaPlayer();
+            _powerUpPlayer = new MediaPlayer();
+                    
 
             _gameMusicPlayer.MediaEnded += _player_MediaEnded;
             var horses = CreateRaceHorses();
+
+            foreach(var horse in horses) {
+                horse.OnObtainedPowerUp += Horse_OnObtainedPowerUp;
+            }
+
             this.raceTrack.ItemsSource = horses;
 
             _movePlayers = CreateMoveSoundPlayers();
-
-
+            
             //_raceController = new RaceController(new RandomMover());
             _raceController = new RaceController(new SerialMover());
             _raceController.Horses = horses;
@@ -68,9 +72,26 @@ namespace WpfHorseRace {
 
             Ports = new List<string>(SerialPort.GetPortNames());
             comboBox1.ItemsSource = Ports;
-
-
+            
             this.MouseDoubleClick += Window1_MouseDoubleClick;
+
+        }
+
+        private void Horse_OnObtainedPowerUp() {
+
+
+            if (CheckAccess() == false) {
+                SetIndicatorCallback d = new SetIndicatorCallback(Horse_OnObtainedPowerUp);
+                this.Dispatcher.BeginInvoke(d);
+                //return;
+
+
+            } else {
+                Uri uri = new Uri(@"Resources\powerup.mp3", UriKind.Relative);
+                _powerUpPlayer.Open(uri);
+                _powerUpPlayer.Play();
+            }
+
 
         }
 
@@ -215,9 +236,9 @@ namespace WpfHorseRace {
         static List<RaceHorse> CreateRaceHorses() {
             List<RaceHorse> raceHorses = new List<RaceHorse>();
 
-            raceHorses.Add(new RaceHorse("1", @"r1.png", @"Resources\Coin.mp3"));
-            raceHorses.Add(new RaceHorse("2", @"r2.png", @"Resources\Stomp.mp3"));
-            raceHorses.Add(new RaceHorse("3", @"r3.png", @"Resources\Jump.mp3"));
+            raceHorses.Add(new RaceHorse("1", @"r1.png"));
+            raceHorses.Add(new RaceHorse("2", @"r2.png"));
+            raceHorses.Add(new RaceHorse("3", @"r3.png"));
 
 
             return raceHorses;

@@ -23,10 +23,12 @@ namespace WpfHorseRace {
                 var raceHorse = Horses[index];
 
 
-                if (OnMove != null) {
+                bool moved = raceHorse.Move(5);
+
+                if (moved && OnMove != null) {
                     OnMove(index);
                 }
-                raceHorse.Move(5);
+
 
                 if (raceHorse.IsWinner) {
                     _mover.GameOver();
