@@ -23,8 +23,6 @@ namespace WpfHorseRace {
             public static IPowerUp GetRandomPowerUp(List<RaceHorse> horses) {
 
                 int index = __random.Next(4);
-
-              
                 if (index == 0) {
                     return new DoubleMovePowerUp("Bullet_Bill.png", horses);
                 } else if (index == 1) {

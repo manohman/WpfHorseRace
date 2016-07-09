@@ -20,7 +20,7 @@ namespace WpfHorseRace {
             _random = new Random(DateTime.Now.Millisecond);
 
             _timer = new System.Windows.Threading.DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(_random.Next(20, 36));
+            _timer.Interval = TimeSpan.FromSeconds(_random.Next(10, 21));
             this._timer.Tick += this.timer_Tick;
         }
 
@@ -76,7 +76,9 @@ namespace WpfHorseRace {
         protected virtual void Dispose(bool disposing) {
             if (!disposedValue) {
                 if (disposing) {
+                    this._timer.Stop();
                     this._timer.Tick -= this.timer_Tick;
+                    _owner.OnObtainedPowerUp -= _owner_OnObtainedPowerUp;
 
                 }
 
@@ -127,7 +129,7 @@ namespace WpfHorseRace {
 
         public DoubleMovePowerUp(string imagePath, List<RaceHorse> horses) : base(imagePath, horses) {
             _activeTimer = new System.Windows.Threading.DispatcherTimer();
-            _activeTimer.Interval = TimeSpan.FromSeconds(15);
+            _activeTimer.Interval = TimeSpan.FromSeconds(10);
             _activeTimer.Tick += _activeTimer_Tick;
 
         }
@@ -140,8 +142,14 @@ namespace WpfHorseRace {
         internal override void ActivePowerUp() {
             _owner.SetMoveMultiplier(2);
             _activeTimer.Start();
-
         }
+
+        protected override void Dispose(bool disposing) {
+            base.Dispose(disposing);
+            _activeTimer.Stop();
+            _activeTimer.Tick -= _activeTimer_Tick;
+        }
+
     }
 
     public class MoveTwoStepsPowerUp: AbstractPowerUps {
@@ -169,14 +177,10 @@ namespace WpfHorseRace {
                 if (horse != _owner) {
                     horse.SetMoveMultiplier(0);
                     horse.Opacity = .50;
-
                 }
-
-
             }
 
             _activeTimer.Start();
-
         }
 
 
@@ -189,6 +193,12 @@ namespace WpfHorseRace {
 
                 }
             }
+        }
+
+        protected override void Dispose(bool disposing) {
+            base.Dispose(disposing);
+            _activeTimer.Stop();
+            _activeTimer.Tick -= _activeTimer_Tick;
         }
     }
 

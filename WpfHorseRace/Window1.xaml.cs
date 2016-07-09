@@ -29,6 +29,7 @@ namespace WpfHorseRace {
         Random _random;
         List<string> _ports;
         List<MediaPlayer> _movePlayers;
+        int _currentSongIndex;
 
         public Window1() {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace WpfHorseRace {
             _gameMusicPlayer = new MediaPlayer();
             _startEndPlayer = new MediaPlayer();
             _powerUpPlayer = new MediaPlayer();
-                    
+            _currentSongIndex = 0;
 
             _gameMusicPlayer.MediaEnded += _player_MediaEnded;
             var horses = CreateRaceHorses();
@@ -78,21 +79,14 @@ namespace WpfHorseRace {
         }
 
         private void Horse_OnObtainedPowerUp() {
-
-
             if (CheckAccess() == false) {
                 SetIndicatorCallback d = new SetIndicatorCallback(Horse_OnObtainedPowerUp);
                 this.Dispatcher.BeginInvoke(d);
-                //return;
-
-
             } else {
                 Uri uri = new Uri(@"Resources\powerup.mp3", UriKind.Relative);
                 _powerUpPlayer.Open(uri);
                 _powerUpPlayer.Play();
             }
-
-
         }
 
         private List<MediaPlayer> CreateMoveSoundPlayers() {
@@ -195,7 +189,15 @@ namespace WpfHorseRace {
         }
 
         private void PlayRandomFile() {
-            string songName = _songFileNames[_random.Next(_songFileNames.Count - 1)];
+
+            //int songIndex = _currentSongIndex++;
+
+            if(_currentSongIndex >= _songFileNames.Count) {
+                _currentSongIndex = 0;
+            }
+
+
+            string songName = _songFileNames[_currentSongIndex++];
             Uri uri = new Uri(songName, UriKind.Relative);
             _gameMusicPlayer.Open(uri);
             _gameMusicPlayer.Play();

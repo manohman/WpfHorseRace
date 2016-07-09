@@ -56,6 +56,12 @@ namespace WpfHorseRace {
         }
 
         internal void SetPowerUp(IPowerUp powerUp) {
+
+            if(_powerUp != null) {
+                _powerUp.Dispose();
+
+            }
+
             _powerUp = powerUp;
             _powerUp.SetOwner(this);
 
@@ -66,7 +72,7 @@ namespace WpfHorseRace {
         }
 
         internal bool Move(int spaces) {
-            int spacesToMove = (spaces * _moveMultiplier);
+            int spacesToMove = spaces > 0 ? (spaces * _moveMultiplier) : spaces;
             PercentComplete += spacesToMove;
             return spacesToMove > 0;
         }
