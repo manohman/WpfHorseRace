@@ -25,14 +25,14 @@ namespace WpfHorseRace {
 
                 int index = __random.Next(4);
 
-
+                index = 0;
                 if (index == 0) {
-                    return new DoubleMovePowerUp("Bullet_Bill.jpg", horses);
+                    return new DoubleMovePowerUp("Bullet_Bill.png", horses);
                 } else if (index == 1) {
-                    return new MoveOthersBackPowerUp("banana.jpg", horses);
+                    return new MoveOthersBackPowerUp("banana.png", horses);
 
                 } else if (index == 2) {
-                    return new FreezeOtherPlayerPowerUp("Triple_Banana.jpg", horses);
+                    return new FreezeOtherPlayerPowerUp("Blooper.png", horses);
 
                 } else {
                     return new MoveTwoStepsPowerUp("Star.png", horses);

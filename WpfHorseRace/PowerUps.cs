@@ -35,7 +35,6 @@ namespace WpfHorseRace {
                 _owner.ShowPowerUp = true;
                 _isWaitingToShow = false;
 
-
                 _timer.Interval = TimeSpan.FromSeconds(15);
                 _timer.Start();
 
@@ -160,7 +159,7 @@ namespace WpfHorseRace {
 
         public FreezeOtherPlayerPowerUp(string imagePath, List<RaceHorse> horses) : base(imagePath, horses) {
             _activeTimer = new System.Windows.Threading.DispatcherTimer();
-            _activeTimer.Interval = TimeSpan.FromSeconds(15);
+            _activeTimer.Interval = TimeSpan.FromSeconds(10);
             _activeTimer.Tick += _activeTimer_Tick;
         }
 
@@ -169,6 +168,8 @@ namespace WpfHorseRace {
             foreach (var horse in _horses) {
                 if (horse != _owner) {
                     horse.SetMoveMultiplier(0);
+                    horse.Opacity = .50;
+
                 }
 
 
@@ -184,6 +185,8 @@ namespace WpfHorseRace {
             foreach (var horse in _horses) {
                 if (horse != _owner) {
                     horse.SetMoveMultiplier(1);
+                    horse.Opacity = 1;
+
                 }
             }
         }

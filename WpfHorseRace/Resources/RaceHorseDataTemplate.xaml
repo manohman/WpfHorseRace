@@ -28,6 +28,12 @@
                 <GradientStop Color="#FFFFFF88" Offset="0.9" />
             </LinearGradientBrush>
 
+            <LinearGradientBrush x:Key="SpeedUpBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="Red" Offset="0.1" />
+                <GradientStop Color="#FFFFFF88" Offset="0.9" />
+            </LinearGradientBrush>
+
+
             <local:RaceHorseProgressIndicatorWidthConverter x:Key="WidthConv" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </DataTemplate.Resources>
@@ -57,13 +63,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <!-- This Rectangle "follows" a horse as it runs the race. -->
-                    <Rectangle x:Name="progressIndicator"
-            Fill="{StaticResource RaceInProgressBrush}"
-            HorizontalAlignment="Left" 
-            RadiusX="8" 
-            RadiusY="8"
-            Margin="1"
-            >
+                    <Rectangle x:Name="progressIndicator" Fill="{StaticResource RaceInProgressBrush}" HorizontalAlignment="Left" RadiusX="8" RadiusY="8" Margin="1">
                         <!-- The width of the progress indicator is calculated by an instance
                  of the RaceHorseProgressIndicatorWidthConverter class. -->
                         <Rectangle.Width>
@@ -76,7 +76,7 @@
 
                     <!-- Displays the picture of a race horse. <Image Source="RaceHorse.gif" Height="120" Width="160"/>-->
 
-                    <Image Source="{Binding DisplayedImagePath}" Height="200" Width="180"/>
+                    <Image Source="{Binding DisplayedImagePath}" Opacity="{Binding Opacity}" Height="200" Width="180"/>
                 </StackPanel>
 
                 <TextBlock x:Name="horseName" Text="{Binding PercentComplete}"  Margin="6,0" VerticalAlignment="Center" Foreground="White" />
@@ -129,6 +129,12 @@
                 <Setter TargetName="horseName" Property="FontWeight" Value="Bold" />
                 <Setter TargetName="horseName" Property="HorizontalAlignment" Value="Center" />
             </DataTrigger>
+
+            <!-- Set special values for the winner of the race. -->
+            <DataTrigger Binding="{Binding IsSpeedUp}" Value="True">
+                <Setter TargetName="progressIndicator" Property="Fill" Value="{StaticResource SpeedUpBrush}" />
+            </DataTrigger>
+
         </DataTemplate.Triggers>
     </DataTemplate>
 </ResourceDictionary>

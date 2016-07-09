@@ -132,10 +132,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\banana.png" />
+    <Resource Include="Resources\Blooper.png" />
+    <Resource Include="Resources\Bullet_Bill.png" />
     <Content Include="Resources\Coin.mp3" />
+    <Resource Include="Resources\Fire_Flower.png" />
     <Content Include="Resources\Jump.mp3" />
+    <Resource Include="Resources\mushroom.png" />
     <Content Include="Resources\powerup.mp3" />
     <Content Include="Resources\Stomp.mp3" />
+    <Resource Include="Resources\Triple_Banana.png" />
     <Content Include="Resources\Winner.mp3" />
     <Resource Include="Resources\r1.png" />
     <Resource Include="Resources\r2.png" />

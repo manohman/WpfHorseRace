@@ -27,6 +27,8 @@ namespace WpfHorseRace {
         private bool _showPowerUp;
         private int _powerUpPercentComplete;
         private int _moveMultiplier;
+        private double _opacity;
+        private bool _isSpeedUp;
 
         public event ObtainedPowerUpEventHandler OnObtainedPowerUp;
 
@@ -35,8 +37,22 @@ namespace WpfHorseRace {
         #region Constructors
 
         static RaceHorse() {
-         
+            
             //RaceHorse.random = new Random( DateTime.Now.Millisecond );
+        }
+
+
+
+
+        public RaceHorse(string name, string imageSource) {
+
+            this._imageSource = imageSource;
+            this.name = name;
+            this.percentComplete = 0;
+            _moveMultiplier = 1;
+            _opacity = 100;
+
+            //	this.timer.Tick += this.timer_Tick;			
         }
 
         internal void SetPowerUp(IPowerUp powerUp) {
@@ -57,16 +73,6 @@ namespace WpfHorseRace {
 
 
 
-
-
-        public RaceHorse(string name, string imageSource) {
-
-            this._imageSource = imageSource;
-            this.name = name;
-            this.percentComplete = 0;
-            _moveMultiplier = 1;
-            //	this.timer.Tick += this.timer_Tick;			
-        }
 
 
 
@@ -102,6 +108,13 @@ namespace WpfHorseRace {
             }
         }
 
+        public double Opacity {
+            get { return _opacity; }
+            set { _opacity = value;
+                this.RaisePropertyChanged("Opacity");
+
+            }
+        }
 
         public int PercentComplete {
             get { return this.percentComplete; }
@@ -110,7 +123,7 @@ namespace WpfHorseRace {
                     return;
 
                 if (value < 0 || value > 100)
-                    throw new ArgumentOutOfRangeException("PercentComplete");
+                    return;
 
                 bool wasFinished = this.IsFinished;
 
@@ -151,6 +164,9 @@ namespace WpfHorseRace {
 
         internal void SetMoveMultiplier(int moveMultiplier) {
             _moveMultiplier = moveMultiplier;
+
+            IsSpeedUp = _moveMultiplier > 1;
+
         }
 
         public bool ShowPowerUp {
@@ -161,10 +177,18 @@ namespace WpfHorseRace {
             }
         }
 
+        public bool IsSpeedUp {
+            get { return _isSpeedUp; }
+            private set {
+                _isSpeedUp = value;
+                this.RaisePropertyChanged("IsSpeedUp");
+
+            }
+        }
 
         #endregion // Public Properties
 
-        #region Public Methods
+            #region Public Methods
 
         public void StartNewRace() {
             // When a race begins, remove a reference to the previous winner.
