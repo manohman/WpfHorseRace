@@ -5,8 +5,7 @@ using System.Text;
 namespace WpfHorseRace {
     public class PowerUpController {
         private List<RaceHorse> _horses;
-        private List<IPowerUp> _powerUps;
-
+     
         public PowerUpController(List<RaceHorse> horses) {
             this._horses = horses;
         }
@@ -25,7 +24,7 @@ namespace WpfHorseRace {
 
                 int index = __random.Next(4);
 
-                index = 0;
+              
                 if (index == 0) {
                     return new DoubleMovePowerUp("Bullet_Bill.png", horses);
                 } else if (index == 1) {
