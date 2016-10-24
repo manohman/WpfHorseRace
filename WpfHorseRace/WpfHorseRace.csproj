@@ -139,6 +139,10 @@
     <Resource Include="Resources\Fire_Flower.png" />
     <Content Include="Resources\Jump.mp3" />
     <Resource Include="Resources\mushroom.png" />
+    <Resource Include="Resources\p1.png" />
+    <Resource Include="Resources\p2.png" />
+    <Resource Include="Resources\p3.jpg" />
+    <Resource Include="Resources\p4.png" />
     <Content Include="Resources\powerup.mp3" />
     <Content Include="Resources\Stomp.mp3" />
     <Resource Include="Resources\Triple_Banana.png" />

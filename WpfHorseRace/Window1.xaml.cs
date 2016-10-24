@@ -59,8 +59,8 @@ namespace WpfHorseRace {
 
             _movePlayers = CreateMoveSoundPlayers();
             
-            //_raceController = new RaceController(new RandomMover());
-            _raceController = new RaceController(new SerialMover());
+            _raceController = new RaceController(new RandomMover());
+            //_raceController = new RaceController(new SerialMover());
             _raceController.Horses = horses;
             _raceController.OnRaceOver += _raceController_OnRaceOver;
             _raceController.OnMove += _raceController_OnMove;
