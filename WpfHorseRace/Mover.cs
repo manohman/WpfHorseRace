@@ -81,7 +81,7 @@ namespace WpfHorseRace {
 
         public RandomMover() {
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromMilliseconds(1500);
+            _timer.Interval = TimeSpan.FromMilliseconds(750);
             this._timer.Tick += this.timer_Tick;
 
             _random = new Random(DateTime.Now.Millisecond);

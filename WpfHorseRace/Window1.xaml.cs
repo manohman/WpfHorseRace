@@ -96,15 +96,15 @@ namespace WpfHorseRace {
             MediaPlayer mediaPlayer2 = new MediaPlayer();
             MediaPlayer mediaPlayer3 = new MediaPlayer();
 
-            Uri uri = new Uri(@"Resources\Coin.mp3", UriKind.Relative);
+            Uri uri = new Uri(@"Resources\move1.mp3", UriKind.Relative);
             mediaPlayer1.Open(uri);
 
 
-            Uri uri2 = new Uri(@"Resources\Jump.mp3", UriKind.Relative);
+            Uri uri2 = new Uri(@"Resources\move2.mp3", UriKind.Relative);
             mediaPlayer2.Open(uri2);
 
 
-            Uri uri3 = new Uri(@"Resources\Stomp.mp3", UriKind.Relative);
+            Uri uri3 = new Uri(@"Resources\move3.mp3", UriKind.Relative);
             mediaPlayer3.Open(uri3);
 
             movePlayers.Add(mediaPlayer1);

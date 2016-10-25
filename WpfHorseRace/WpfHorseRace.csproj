@@ -143,6 +143,10 @@
     <Resource Include="Resources\p2.png" />
     <Resource Include="Resources\p3.jpg" />
     <Resource Include="Resources\p4.png" />
+    <Content Include="Resources\move1.mp3" />
+    <Content Include="Resources\move2.mp3" />
+    <Content Include="Resources\move3.mp3" />
+    <Resource Include="Resources\p3.png" />
     <Content Include="Resources\powerup.mp3" />
     <Content Include="Resources\Stomp.mp3" />
     <Resource Include="Resources\Triple_Banana.png" />
