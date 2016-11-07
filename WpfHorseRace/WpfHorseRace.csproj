@@ -122,7 +122,9 @@
     <Resource Include="Resources\RaceHorse.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Background.jpg" />
+    <Content Include="Resources\Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -135,25 +137,42 @@
     <Resource Include="Resources\banana.png" />
     <Resource Include="Resources\Blooper.png" />
     <Resource Include="Resources\Bullet_Bill.png" />
+    <Content Include="Resources\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Coin.mp3" />
     <Resource Include="Resources\Fire_Flower.png" />
     <Content Include="Resources\Jump.mp3" />
     <Resource Include="Resources\mushroom.png" />
-    <Resource Include="Resources\p1.png" />
-    <Resource Include="Resources\p2.png" />
-    <Resource Include="Resources\p3.jpg" />
-    <Resource Include="Resources\p4.png" />
+    <Content Include="Resources\p1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\p2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\p3.jpg" />
+    <Content Include="Resources\p4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\move1.mp3" />
     <Content Include="Resources\move2.mp3" />
     <Content Include="Resources\move3.mp3" />
-    <Resource Include="Resources\p3.png" />
+    <Content Include="Resources\p3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\powerup.mp3" />
     <Content Include="Resources\Stomp.mp3" />
     <Resource Include="Resources\Triple_Banana.png" />
     <Content Include="Resources\Winner.mp3" />
-    <Resource Include="Resources\r1.png" />
-    <Resource Include="Resources\r2.png" />
-    <Resource Include="Resources\r3.png" />
+    <Content Include="Resources\r1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\r2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\r3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="r3.ico" />
     <Resource Include="Resources\r3.ico" />
     <Content Include="Resources\startbell.mp3">

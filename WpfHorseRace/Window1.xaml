@@ -11,7 +11,7 @@
     >
   <Grid>
     <Grid.Background>
-      <ImageBrush ImageSource="Resources/Background.jpg" Opacity="1" />
+      <ImageBrush ImageSource="Resources/Background.png" Opacity="1" />
     </Grid.Background>
     
     <Grid.RowDefinitions>

@@ -59,8 +59,8 @@ namespace WpfHorseRace {
 
             _movePlayers = CreateMoveSoundPlayers();
             
-            _raceController = new RaceController(new RandomMover());
-            //_raceController = new RaceController(new SerialMover());
+            //_raceController = new RaceController(new RandomMover());
+            _raceController = new RaceController(new SerialMover());
             _raceController.Horses = horses;
             _raceController.OnRaceOver += _raceController_OnRaceOver;
             _raceController.OnMove += _raceController_OnMove;
@@ -210,8 +210,10 @@ namespace WpfHorseRace {
 
             var selectedValue = comboBox1.SelectedValue;
 
-            if (selectedValue != null) {
-                string port = selectedValue.ToString();
+            string port = string.IsNullOrEmpty((string)selectedValue)? string.Empty: selectedValue.ToString();
+
+            //if (selectedValue != null) {
+                //string port = selectedValue.ToString();
 
                 _raceController.StartNewRace(port);
                 _powerUpController.StartNewRace();
@@ -232,7 +234,7 @@ namespace WpfHorseRace {
                 _startEndPlayer.Play();
 
                 PlayRandomFile();
-            }
+            //}
         }
 
         static List<RaceHorse> CreateRaceHorses() {
