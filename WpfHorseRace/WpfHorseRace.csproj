@@ -6,7 +6,7 @@
     <ProjectGuid>{BB1552EF-0105-4F82-9C27-D9D8CB860589}</ProjectGuid>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <RootNamespace>WpfHorseRace</RootNamespace>
-    <AssemblyName>WpfHorseRace</AssemblyName>
+    <AssemblyName>TheDerby</AssemblyName>
     <WarningLevel>4</WarningLevel>
     <OutputType>winexe</OutputType>
     <MinFrameworkVersionRequired>3.0</MinFrameworkVersionRequired>
@@ -46,7 +46,11 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>r3.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -119,12 +123,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\RaceHorse.gif" />
+    <None Include="Resources\RaceHorse.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Background.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -134,16 +136,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\banana.png" />
-    <Resource Include="Resources\Blooper.png" />
-    <Resource Include="Resources\Bullet_Bill.png" />
+    <None Include="Resources\banana.png" />
+    <None Include="Resources\Blooper.png" />
+    <None Include="Resources\Bullet_Bill.png" />
     <Content Include="Resources\background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Backgrounds\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Coin.mp3" />
-    <Resource Include="Resources\Fire_Flower.png" />
+    <None Include="Resources\Fire_Flower.png" />
     <Content Include="Resources\Jump.mp3" />
-    <Resource Include="Resources\mushroom.png" />
+    <None Include="Resources\mushroom.png" />
     <Content Include="Resources\p1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -154,16 +159,28 @@
     <Content Include="Resources\p4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\move1.mp3" />
-    <Content Include="Resources\move2.mp3" />
-    <Content Include="Resources\move3.mp3" />
+    <Content Include="Resources\move1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\move2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\move3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\p3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\powerup.mp3" />
-    <Content Include="Resources\Stomp.mp3" />
-    <Resource Include="Resources\Triple_Banana.png" />
-    <Content Include="Resources\Winner.mp3" />
+    <Content Include="Resources\powerup.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Stomp.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\Triple_Banana.png" />
+    <Content Include="Resources\Winner.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\r1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -173,94 +190,51 @@
     <Content Include="Resources\r3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="r3.ico" />
-    <Resource Include="Resources\r3.ico" />
+    <Content Include="r3.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\r3.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\startbell.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\BlueStar.gif" />
-    <Resource Include="Resources\OrangeStar.gif" />
-    <Resource Include="Resources\RedStar.gif" />
-    <Resource Include="Resources\banana.jpg" />
-    <Resource Include="Resources\Bullet_Bill.jpg" />
-    <Resource Include="Resources\Coin.png" />
-    <Resource Include="Resources\Fire_Flower.jpg" />
-    <Resource Include="Resources\mushroom.jpg" />
-    <Resource Include="Resources\Star.png" />
-    <Resource Include="Resources\Triple_Banana.jpg" />
-    <Content Include="Resources\Sounds\BoogieWonderland.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Excitebike - Main Theme.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\FinalCountdown.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Block Plaza.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Bowser%27s Castle.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Chain Chomp Roulette.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Dry Dry Ruins.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - DS Desert Hills.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - DS Peach Gardens.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - DS Yoshi Falls.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - GBA Bowser Castle 3.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - GCN DK Mountain.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - GCN Mario Circuit.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - GCN Waluigi Stadium.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Luigi Circuit &amp; Mario Circuit.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Maple Treeway.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Menu %28Medley%29.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Moonview Highway Ver. 2.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - N64 Bowser%27s Castle.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Mario Kart Wii Music - Toad%27s Factory.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\PlanetsSongVideo.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Power.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\Spy Hunter %28Arcade%29 Music.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sounds\TwinkleTwinkleLittleStar.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Resources\YellowStar.gif" />
+    <None Include="Resources\BlueStar.gif" />
+    <None Include="Resources\OrangeStar.gif" />
+    <None Include="Resources\RedStar.gif" />
+    <None Include="Resources\banana.jpg" />
+    <None Include="Resources\Bullet_Bill.jpg" />
+    <None Include="Resources\Coin.png" />
+    <None Include="Resources\Fire_Flower.jpg" />
+    <None Include="Resources\mushroom.jpg" />
+    <None Include="Resources\Star.png" />
+    <None Include="Resources\Triple_Banana.jpg" />
+    <Content Include="Resources\Sounds\BoogieWonderland.mp3" />
+    <Content Include="Resources\Sounds\Excitebike - Main Theme.mp3" />
+    <Content Include="Resources\Sounds\FinalCountdown.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Block Plaza.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Bowser%27s Castle.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Chain Chomp Roulette.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Dry Dry Ruins.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - DS Desert Hills.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - DS Peach Gardens.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - DS Yoshi Falls.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - GBA Bowser Castle 3.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - GCN DK Mountain.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - GCN Mario Circuit.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - GCN Waluigi Stadium.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Luigi Circuit &amp; Mario Circuit.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Maple Treeway.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Menu %28Medley%29.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Moonview Highway Ver. 2.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - N64 Bowser%27s Castle.mp3" />
+    <Content Include="Resources\Sounds\Mario Kart Wii Music - Toad%27s Factory.mp3" />
+    <Content Include="Resources\Sounds\PlanetsSongVideo.mp3" />
+    <Content Include="Resources\Sounds\Power.mp3" />
+    <Content Include="Resources\Sounds\Spy Hunter %28Arcade%29 Music.mp3" />
+    <Content Include="Resources\Sounds\TwinkleTwinkleLittleStar.mp3" />
+    <None Include="Resources\YellowStar.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

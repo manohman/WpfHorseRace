@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfHorseRace.Window1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="The Halloween Derby" 
+    Title="The Derby" 
     xmlns:local="clr-namespace:WpfHorseRace" 
     Background="White"
     WindowState="Maximized"
@@ -9,9 +9,9 @@
     WindowStartupLocation="CenterScreen"
     FontSize="13"
     >
-  <Grid>
+  <Grid Name="MainGrid">
     <Grid.Background>
-      <ImageBrush ImageSource="Resources/Background.png" Opacity="1" />
+      <ImageBrush ImageSource="Resources/Backgrounds/Background.png" Opacity="1" />
     </Grid.Background>
     
     <Grid.RowDefinitions>

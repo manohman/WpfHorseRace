@@ -26,16 +26,20 @@ namespace WpfHorseRace {
         MediaPlayer _powerUpPlayer;
 
         List<string> _songFileNames;
+        List<string> _backgroundImages;
         Random _random;
         List<string> _ports;
         List<MediaPlayer> _movePlayers;
         int _currentSongIndex;
+        int _currentBackgroundIndex;
+
 
         public Window1() {
             InitializeComponent();
 
             _random = new Random();
             _songFileNames = new List<string>();
+            _backgroundImages = new List<string>();
 
             DirectoryInfo di = new DirectoryInfo("Resources\\Sounds");
 
@@ -43,10 +47,21 @@ namespace WpfHorseRace {
                 _songFileNames.Add(fileInfo.FullName);
             }
 
+
+
+            DirectoryInfo backgrounds = new DirectoryInfo("Resources\\Backgrounds");
+
+            foreach (var fileInfo in backgrounds.GetFiles()) {
+                _backgroundImages.Add(fileInfo.FullName);
+            }
+
+
+
             _gameMusicPlayer = new MediaPlayer();
             _startEndPlayer = new MediaPlayer();
             _powerUpPlayer = new MediaPlayer();
             _currentSongIndex = 0;
+            _currentBackgroundIndex = 0;
 
             _gameMusicPlayer.MediaEnded += _player_MediaEnded;
             var horses = CreateRaceHorses();
@@ -59,8 +74,8 @@ namespace WpfHorseRace {
 
             _movePlayers = CreateMoveSoundPlayers();
             
-            //_raceController = new RaceController(new RandomMover());
-            _raceController = new RaceController(new SerialMover());
+            _raceController = new RaceController(new RandomMover());
+            //_raceController = new RaceController(new SerialMover());
             _raceController.Horses = horses;
             _raceController.OnRaceOver += _raceController_OnRaceOver;
             _raceController.OnMove += _raceController_OnMove;
@@ -75,6 +90,13 @@ namespace WpfHorseRace {
             comboBox1.ItemsSource = Ports;
             
             this.MouseDoubleClick += Window1_MouseDoubleClick;
+
+
+            SetBackgroundImage();
+
+
+            //  Uri iconUri = new Uri("pack://application:,,,/Resources/r3.ico");
+            // Icon = BitmapFrame.Create(iconUri);
 
         }
 
@@ -203,6 +225,32 @@ namespace WpfHorseRace {
             _gameMusicPlayer.Play();
         }
 
+
+
+        private void SetBackgroundImage() {
+
+            //int songIndex = _currentSongIndex++;
+
+            if (_currentBackgroundIndex >= _backgroundImages.Count) {
+                _currentBackgroundIndex = 0;
+            }
+
+
+            string backgroundImage = _backgroundImages[_currentBackgroundIndex++];
+            Uri uri = new Uri(backgroundImage, UriKind.Relative);
+
+
+
+
+            ImageBrush myBrush = new ImageBrush();
+            Image image = new Image();
+            image.Source = new BitmapImage(uri);
+            myBrush.ImageSource = image.Source;
+            MainGrid.Background = myBrush;
+
+        }
+
+
         void StartRace() {
             foreach (RaceHorse raceHorse in this.raceTrack.Items) {
                 raceHorse.StartNewRace();
@@ -233,6 +281,7 @@ namespace WpfHorseRace {
                 _startEndPlayer.Open(uri);
                 _startEndPlayer.Play();
 
+            SetBackgroundImage();
                 PlayRandomFile();
             //}
         }
