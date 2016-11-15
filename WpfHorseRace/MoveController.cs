@@ -10,6 +10,19 @@ namespace WpfHorseRace {
         IMover _mover;
 
         public List<RaceHorse> Horses { get; internal set; }
+        public IMover Mover { get {
+                return _mover;
+            }
+            set {
+                if(_mover != value) {
+                    _mover.MoveRequested -= _mover_MoveRequested;
+
+                    _mover = value;
+                    _mover.MoveRequested += _mover_MoveRequested;
+
+                }
+            }
+        }
 
         public RaceController(IMover mover) {
             _mover = mover;

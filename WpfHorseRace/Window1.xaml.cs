@@ -15,10 +15,12 @@ using System.Windows.Shapes;
 
 namespace WpfHorseRace {
     public partial class Window1 : System.Windows.Window {
+        const string SIMULATE = "Simulate";
         delegate void SetIndicatorCallback();
         delegate void SetMoveCallback(int index);
 
         RaceController _raceController;
+
         PowerUpController _powerUpController;
 
         MediaPlayer _gameMusicPlayer;
@@ -32,7 +34,9 @@ namespace WpfHorseRace {
         List<MediaPlayer> _movePlayers;
         int _currentSongIndex;
         int _currentBackgroundIndex;
-
+        string _previousCom;
+        IMover _randomMover;
+        IMover _serialMover;
 
         public Window1() {
             InitializeComponent();
@@ -40,7 +44,7 @@ namespace WpfHorseRace {
             _random = new Random();
             _songFileNames = new List<string>();
             _backgroundImages = new List<string>();
-
+            _previousCom = SIMULATE;
             DirectoryInfo di = new DirectoryInfo("Resources\\Sounds");
 
             foreach (var fileInfo in di.GetFiles()) {
@@ -73,8 +77,11 @@ namespace WpfHorseRace {
             this.raceTrack.ItemsSource = horses;
 
             _movePlayers = CreateMoveSoundPlayers();
-            
-            _raceController = new RaceController(new RandomMover());
+
+            _randomMover = new RandomMover();
+            _serialMover = new SerialMover();
+
+            _raceController = new RaceController(_randomMover);
             //_raceController = new RaceController(new SerialMover());
             _raceController.Horses = horses;
             _raceController.OnRaceOver += _raceController_OnRaceOver;
@@ -87,6 +94,7 @@ namespace WpfHorseRace {
             this.lnkStartNewRace.Click += delegate { this.StartRace(); };
 
             Ports = new List<string>(SerialPort.GetPortNames());
+            Ports.Insert(0, SIMULATE);
             comboBox1.ItemsSource = Ports;
             
             this.MouseDoubleClick += Window1_MouseDoubleClick;
@@ -259,6 +267,13 @@ namespace WpfHorseRace {
             var selectedValue = comboBox1.SelectedValue;
 
             string port = string.IsNullOrEmpty((string)selectedValue)? string.Empty: selectedValue.ToString();
+
+            if(port == SIMULATE) {
+                _raceController.Mover = _randomMover;
+            } else {
+                _raceController.Mover = _serialMover;
+            }
+
 
             //if (selectedValue != null) {
                 //string port = selectedValue.ToString();
